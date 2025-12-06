@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Researcher Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #007acc;
+      font-weight: bold;
+    }
+    .bio {
+      margin-top: 30px;
+    }
+    .publications {
+      margin-top: 40px;
+    }
+    .pub-item {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .pub-item img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .pub-text {
+      max-width: 700px;
+    }
+    .pub-text a {
+      color: #007acc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Your Name</h1>
+    <p>your.email@example.com</p>
+    <nav>
+      <a href="CV.pdf" target="_blank">CV</a>
+      <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+      <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+    </nav>
+  </div>
+  <img src="your_picture.jpg" alt="Profile Picture" />
+</header>
+
+<section class="bio">
+  <h2>Bio</h2>
+  <p>
+    Short description of yourself, your background, and your research interests.
+    You can edit this text to summarize your work and areas of expertise.
+  </p>
+</section>
+
+<section class="publications">
+  <h2>Selected Publications</h2>
+
+  <div class="pub-item">
+    <img src="publication1_thumbnail.jpg" alt="Publication 1" />
+    <div class="pub-text">
+      <p><strong>Title of Publication 1</strong><br />
+      Two-line description of the publication, highlighting its contribution or findings.</p>
+      <a href="https://link_to_publication_1.com" target="_blank">Read Publication</a>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <img src="publication2_thumbnail.jpg" alt="Publication 2" />
+    <div class="pub-text">
+      <p><strong>Title of Publication 2</strong><br />
+      Two-line description of the publication.</p>
+      <a href="https://link_to_publication_2.com" target="_blank">Read Publication</a>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
