@@ -40,7 +40,7 @@
     }
     .pub-item {
       display: flex;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     .pub-item img {
       width: 90px;
@@ -67,7 +67,7 @@
     <h1>Guglielmo Montone</h1>
     <p>montone.guglielmo@gmail.com</p>
     <nav>
-      <a href="CV.pdf" target="CvMontoneGuglielmo2025.pdf">CV</a>
+      <a href="CvMontoneGuglielmo2025.pdf" target="CvMontoneGuglielmo2025.pdf">CV</a>
       <a href="https://scholar.google.com" target="https://scholar.google.com/citations?user=kD51fXUAAAAJ&hl=en&authuser=1&oi=sra">Google Scholar</a>
       <a href="https://www.linkedin.com" target="https://www.linkedin.com/in/guglielmo-montone-5369aa162/">LinkedIn</a>
     </nav>
@@ -75,16 +75,64 @@
   <img src="guglielmo_picture.jpg" alt="Profile Picture" />
 </header>
 
-<section class="bio">
-  <h2>Bio</h2>
+<section class="Overview">
+  <h2>Overview</h2>
   <p>
-    Short description of yourself, your background, and your research interests.
-    You can edit this text to summarize your work and areas of expertise.
+  Hi, I'm Guglielmo 👋. I've spent the last 6 years leading AI projects for the semiconductor industry — co-founding and serving as CTO 
+  of a startup where we grew the team from 2 to 20 and built and deployed AI systems — and more than 8 years in academic research, 
+  mostly at the intersection of machine learning and robotics.
+  </p>
+  
+  <p>
+  My current research interests focus on embodied AI, vision–language–action models, and self-supervised architectures — basically
+  teaching machines to perceive, act, and learn like humans do.
+  </p>
+  
+  <p>
+  Outside of work, I live in the countryside, grow my own vegetables 🌱, and teach yoga. I'm passionate about 
+  building a life—and maybe a future society—that is self-sufficient, sustainable, mindful, and compassionate…with plenty of robots all around! 🤖🙂
   </p>
 </section>
 
 <section class="publications">
-  <h2>Selected Publications</h2>
+  <h2>Research Interests</h2>
+
+  <div class="pub-item">
+    <img src="research_project.png" alt="Publication 1" />
+    <div class="pub-text">
+      <p>
+        <strong>Towards smarter Vision-Language-Action models</strong><br />
+        In this document, I outline what I consider to be the main limitations of Visual-Language-Action (VLA) models and propose potential ways to address them. The architecture I suggest offers several advantages:
+        <ol>
+          <li><strong>Extension of VJepa:</strong> Fully self-supervised, eliminating the need to collect data through teleoperation of the robot.</li>
+          <li><strong>Explicit Hierarchical Representation of Sensorimotor Loops:</strong> Supports both fast and slow robot control loops, reducing latency issues common in large VLA models.</li>
+          <li><strong>Integration of Sensor, Motor, and Planning Capabilities:</strong> Sensors and motors are represented at multiple levels of abstraction, allowing the architecture to create a cohesive representation. This improves the robot's efficiency in determining the appropriate motor plan to interact with objects in the visual scene.</li>
+        </ol>
+        <strong>I would love to hear your feedback!!</strong> You can access the full document via the link below.
+      </p>
+      <a href="research_project.pdf" target="_blank">Read Publication</a>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <img src="bot_crib.png" alt="Publication 2" />
+    <div class="pub-text">
+      <p><strong>Curiosity‑Driven Exploration in Robots</strong><br />
+      I am fascinated by how intrinsically motivated agents — both biological and artificial — explore and learn about their environments through 
+      self‑driven interaction rather than external supervision. This interest builds on sensorimotor approaches to perception and cognition, 
+      such as the FEEL project led by <a href="http://nivea.psycho.univ-paris5.fr/" target="_blank">Kevin O'Regan</a>, 
+      During this project, I participated in several studies and experiments on sensorimotor contingency learning in infants, including work on infants’ sensitivity
+      to real-time arm-movement contingencies. I also contributed to the design of a robotized pacifier and a baby-gym, both created to 
+      study how babies discover and interact with sensorimotor regularities.
+      </p>
+      <a href="https://drive.google.com/file/d/0B9WJ-nNrcH7hTzE0M2M0ZUlfeVU/view?resourcekey=0-QksA4ng5cCQf9O_7IJFe7g" target="_blank">Robotic Pacifier</a>
+    </div>
+  </div>
+
+</section>
+
+<section class="publications">
+  <h2>More about me</h2>
 
   <div class="pub-item">
     <img src="publication1_thumbnail.jpg" alt="Publication 1" />
@@ -105,6 +153,8 @@
   </div>
 
 </section>
+
+
 
 </body>
 </html>
