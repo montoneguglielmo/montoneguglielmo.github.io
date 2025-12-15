@@ -3,253 +3,250 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Researcher Website</title>
+  <title>Guglielmo Montone — Researcher</title>
   <style>
+    :root{
+      --accent:#007acc;
+      --bg:#ffffff;
+      --muted:#666;
+      --card:#f9f9fb;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111;
+      margin:0;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .page {
+      width:100%;
+      max-width:var(--max-width);
+      background:transparent;
     }
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid #007acc;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      padding-bottom:18px;
+      border-bottom:1px solid #e6e6e6;
     }
-    header img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
+    .meta {
+      flex:1;
     }
-    nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: #007acc;
-      font-weight: bold;
-    }
-    .bio {
-      margin-top: 30px;
-    }
-    .publications {
-      margin-top: 40px;
-    }
-    .pub-item {
-      display: flex;
-      margin-bottom: 40px;
-    }
-    .pub-item img {
-      width: 90px;
-      height: 90px;
-      object-fit: cover;
-      margin-right: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    .pub-text {
-      max-width: 700px;
-    }
-    .pub-text a {
-      color: #007acc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    /* Small gallery section */
-    .gallery-section {
-      margin-top: 40px;
-    }
-    .gallery-section p {
-      max-width: 700px;
-      line-height: 1.5;
+    h1{margin:0;font-size:28px}
+    .contact{margin-top:6px;color:var(--muted)}
+    nav{margin-top:12px}
+    nav a{margin-right:14px;color:var(--accent);text-decoration:none;font-weight:600}
+    header img.profile{
+      width:120px;height:120px;object-fit:cover;border-radius:14px;border:1px solid #e0e0e0
     }
 
-    .thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .thumb-grid img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      transition: transform 0.2s ease;
-    }
-    .thumb-grid img:hover {
-      transform: scale(1.03);
-    }
-    /* Lightbox */
+    main{padding-top:26px}
+    .section{margin-bottom:34px;padding-left:8px;padding-right:8px} /* Added horizontal padding for all sections */
+    .section h2{margin-top:0;margin-bottom:16px;margin-left:0;margin-right:0}
+    .overview p{line-height:1.6;margin:12px 0}
+
+    /* Publications list */
+    .publications .pub-item{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+    .pub-thumb{width:90px;height:90px;border-radius:8px;object-fit:cover;border:1px solid #ddd}
+    .pub-text a{color:var(--accent);text-decoration:none;font-weight:700}
+
+    /* Compact gallery block requested */
+    .gallery-compact{display:block;background:var(--card);padding:18px;border-radius:12px;border:1px solid #eee}
+    .gallery-compact p{margin:0 0 12px 0;line-height:1.5;color:#0d0d0d}
+    .thumb-row{display:flex;gap:10px;flex-wrap:wrap}
+    .thumb-row .thumb{flex:0 0 calc(20% - 8px);min-width:72px;max-width:150px}
+    .thumb-row img{width:100%;height:96px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #ddd}
+
+    /* Lightbox overlay (slightly bigger shape overlapping) */
     .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+      position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:1200;padding:30px
     }
-    .lightbox img {
-      max-width: 80%;
-      max-height: 80%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    .lightbox-inner{position:relative;max-width:1100px;width:100%;max-height:90vh;display:flex;align-items:center;justify-content:center}
+    .lightbox-card{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));padding:14px;border-radius:14px;backdrop-filter:blur(6px)}
+    .lightbox img{display:block;max-width:calc(100vw - 160px);max-height:78vh;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+    .lightbox .caption{margin-top:10px;color:#eee;text-align:center;font-size:14px}
+
+    /* Controls */
+    .btn {
+      position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.06);border:0;padding:10px;border-radius:999px;cursor:pointer;color:#fff;font-size:18px}
+    .btn:focus{outline:2px solid rgba(255,255,255,0.15)}
+    .prev{left:-50px}
+    .next{right:-50px}
+    .close{position:absolute;right:10px;top:10px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+
+    /* Responsive tweaks */
+    @media (max-width:800px){
+      header{flex-direction:column;align-items:flex-start}
+      .thumb-row .thumb{flex:0 0 calc(33.333% - 8px)}
+      .btn.prev{left:10px}
+      .btn.next{right:10px}
+      .lightbox img{max-width:calc(100vw - 60px)}
+      .section{padding-left:6px;padding-right:6px}
     }
-    .lightbox .close-area {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
+
+    @media (max-width:480px){
+      .thumb-row .thumb{flex:0 0 calc(50% - 8px)}
+      header img.profile{width:96px;height:96px}
+      h1{font-size:22px}
+      .section{padding-left:8px;padding-right:8px}
     }
-    .lightbox img {
-      position: relative;
-      z-index: 1001;
-    }
+
   </style>
 </head>
 <body>
+  <div class="page" id="page">
+    <header>
+      <div class="meta">
+        <h1>Guglielmo Montone</h1>
+        <div class="contact">montone.guglielmo@gmail.com</div>
+        <nav aria-label="Primary">
+          <a href="CvMontoneGuglielmo2025.pdf" target="_blank">CV</a>
+          <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+          <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+        </nav>
+      </div>
+      <img class="profile" src="guglielmo_picture.jpg" alt="Portrait of Guglielmo Montone">
+    </header>
 
-<header>
-  <div>
-    <h1>Guglielmo Montone</h1>
-    <p>montone.guglielmo@gmail.com</p>
-    <nav>
-      <a href="CvMontoneGuglielmo2025.pdf" target="CvMontoneGuglielmo2025.pdf">CV</a>
-      <a href="https://scholar.google.com" target="https://scholar.google.com/citations?user=kD51fXUAAAAJ&hl=en&authuser=1&oi=sra">Google Scholar</a>
-      <a href="https://www.linkedin.com" target="https://www.linkedin.com/in/guglielmo-montone-5369aa162/">LinkedIn</a>
-    </nav>
-  </div>
-  <img src="guglielmo_picture.jpg" alt="Profile Picture" />
-</header>
+    <main>
+      <section class="section overview">
+        <h2>Overview</h2>
+        <p>Hi, I’m Guglielmo 👋. I’m an AI researcher and entrepreneur with over 8 years of academic research experience and 6 years leading applied AI projects in the semiconductor industry — including co-founding and serving as CTO of a startup, where we grew the team from 2 to 20 and built and deployed production AI systems.</p>
+        <p>My research interests focus on embodied AI, vision–language–action models, and self-supervised architectures — broadly, how to teach machines to perceive, act, and learn in the real world, in ways that resemble human intelligence.</p>
+        <p>Outside of work, I live in the countryside, grow my own vegetables 🌱, and teach yoga. I'm passionate about building a life—and maybe a future society—that is self-sufficient, sustainable, mindful, and compassionate…with plenty of robots all around! 🤖🙂</p>
+      </section>
 
-<section class="Overview">
-  <h2>Overview</h2>
-  <p>
-  Hi, I'm Guglielmo 👋. I've spent the last 6 years leading AI projects for the semiconductor industry — co-founding and serving as CTO 
-  of a startup where we grew the team from 2 to 20 and built and deployed AI systems — and more than 8 years in academic research, 
-  mostly at the intersection of machine learning and robotics.
-  </p>
-  
-  <p>
-  My current research interests focus on embodied AI, vision–language–action models, and self-supervised architectures — basically
-  teaching machines to perceive, act, and learn like humans do.
-  </p>
-  
-  <p>
-  Outside of work, I live in the countryside, grow my own vegetables 🌱, and teach yoga. I'm passionate about 
-  building a life—and maybe a future society—that is self-sufficient, sustainable, mindful, and compassionate…with plenty of robots all around! 🤖🙂
-  </p>
-</section>
+      <section class="section publications">
+        <h2>Research Interests</h2>
 
-<section class="publications">
-  <h2>Research Interests</h2>
+        <article class="pub-item">
+          <img class="pub-thumb" src="research_project.png" alt="Towards smarter Vision-Language-Action models thumbnail">
+          <div class="pub-text">
+            <p>
+                <strong>Towards smarter Vision-Language-Action models</strong><br />
+                In this document, I outline what I consider to be the main limitations of Visual-Language-Action (VLA) models and propose potential ways to address them. The architecture I suggest offers several advantages:
+                <ol>
+                  <li><strong>Extension of VJepa:</strong> Fully self-supervised, eliminating the need to collect data through teleoperation of the robot.</li>
+                  <li><strong>Explicit Hierarchical Representation of Sensorimotor Loops:</strong> Supports both fast and slow robot control loops, reducing latency issues common in large VLA models.</li>
+                  <li><strong>Integration of Sensor, Motor, and Planning Capabilities:</strong> Sensors and motors are represented at multiple levels of abstraction, allowing the architecture to create a cohesive representation. This improves the robot's efficiency in determining the appropriate motor plan to interact with objects in the visual scene.</li>
+                </ol>
+                <strong>I would love to hear your feedback!!</strong> You can access the full document via the link below.
+              </p>
+              <a href="research_project.pdf" target="_blank">Read Publication</a>
+          </div>
+        </article>
 
-  <div class="pub-item">
-    <img src="research_project.png" alt="Publication 1" />
-    <div class="pub-text">
-      <p>
-        <strong>Towards smarter Vision-Language-Action models</strong><br />
-        In this document, I outline what I consider to be the main limitations of Visual-Language-Action (VLA) models and propose potential ways to address them. The architecture I suggest offers several advantages:
-        <ol>
-          <li><strong>Extension of VJepa:</strong> Fully self-supervised, eliminating the need to collect data through teleoperation of the robot.</li>
-          <li><strong>Explicit Hierarchical Representation of Sensorimotor Loops:</strong> Supports both fast and slow robot control loops, reducing latency issues common in large VLA models.</li>
-          <li><strong>Integration of Sensor, Motor, and Planning Capabilities:</strong> Sensors and motors are represented at multiple levels of abstraction, allowing the architecture to create a cohesive representation. This improves the robot's efficiency in determining the appropriate motor plan to interact with objects in the visual scene.</li>
-        </ol>
-        <strong>I would love to hear your feedback!!</strong> You can access the full document via the link below.
-      </p>
-      <a href="research_project.pdf" target="_blank">Read Publication</a>
+        <article class="pub-item">
+          <img class="pub-thumb" src="bot_crib.png" alt="Curiosity-Driven Exploration thumbnail">
+          <div class="pub-text">
+            <div>
+                <p><strong>Curiosity‑Driven Exploration in Robots</strong><br />
+                I am fascinated by how intrinsically motivated agents — both biological and artificial — explore and learn about their environments through 
+                self‑driven interaction rather than external supervision. This interest builds on sensorimotor approaches to perception and cognition, 
+                such as the FEEL project led by <a href="http://nivea.psycho.univ-paris5.fr/" target="_blank">Kevin O'Regan</a>, 
+                During this project, I participated in several studies and experiments on sensorimotor contingency learning in infants, including work on infants’ sensitivity
+                to real-time arm-movement contingencies. I also contributed to the design of a robotized pacifier and a baby-gym, both created to 
+                study how babies discover and interact with sensorimotor regularities.
+                </p>
+                <a href="https://drive.google.com/file/d/0B9WJ-nNrcH7hTzE0M2M0ZUlfeVU/view?resourcekey=0-QksA4ng5cCQf9O_7IJFe7g" target="_blank">Robotic Pacifier</a>
+            </div>
+        </article>
+
+      </section>
+
+      <!-- Compact gallery section -->
+      <section class="section">
+        <h2>More about me</h2>
+        <div class="gallery-compact" aria-label="Small gallery">
+          <p>A few years ago, my wife and I moved to the countryside with the intention of living closer to nature, while still remaining connected
+            to our professional lives. I had the ambition of growing all the vegetables we eat, while 
+            she envisioned renovating part of the house to host yoga retreats. 
+            Since then, I have become deeply interested in farming techniques that are less invasive—and often more resilient—than conventional agriculture. I have read 
+            extensively about permaculture and syntropic agriculture, and I now try to grow vegetables in our garden according to these principles. 
+            A growing body of research suggests that diversified, agroecological 
+            systems can match—and in some cases exceed—the productivity of conventional agriculture while producing higher-quality 
+            food and greater ecological resilience. I think robotic could be of great help in pusing our sociaty towards more sustainable food production</p>
+          <div class="thumb-row" id="thumbRow">
+            <div class="thumb"><img data-src="pumpkin.png" data-full="pumpkin.png" alt="Miraculous pumpkin" loading="lazy"></div>
+            <div class="thumb"><img data-src="vegetables.png" data-full="vegetables.png" alt="Summer 2025!! 🌱" loading="lazy"></div>
+            <div class="thumb"><img data-src="sintropy.png" data-full="sintropy.png" alt="Syntrophic agricolture workshop in Sicily!" loading="lazy"></div>
+            <div class="thumb"><img data-src="animals.png" data-full="animals.png" alt="FRIENDS!! 🐶🐱" loading="lazy"></div>
+            <div class="thumb"><img data-src="yoga_studio.png" data-full="yoga_studio.png" alt="Yoga studio. Work in progress..." loading="lazy"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Lightbox overlay -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="lightbox-inner">
+        <div class="lightbox-card">
+          <button class="close" id="lbClose" aria-label="Close">✕</button>
+          <button class="btn prev" id="lbPrev" aria-label="Previous">◀</button>
+          <img id="lbImg" src="" alt="Expanded preview">
+          <button class="btn next" id="lbNext" aria-label="Next">▶</button>
+          <div class="caption" id="lbCaption"></div>
+        </div>
+      </div>
     </div>
+
   </div>
 
-  <div class="pub-item">
-    <img src="bot_crib.png" alt="Publication 2" />
-    <div class="pub-text">
-      <p><strong>Curiosity‑Driven Exploration in Robots</strong><br />
-      I am fascinated by how intrinsically motivated agents — both biological and artificial — explore and learn about their environments through 
-      self‑driven interaction rather than external supervision. This interest builds on sensorimotor approaches to perception and cognition, 
-      such as the FEEL project led by <a href="http://nivea.psycho.univ-paris5.fr/" target="_blank">Kevin O'Regan</a>, 
-      During this project, I participated in several studies and experiments on sensorimotor contingency learning in infants, including work on infants’ sensitivity
-      to real-time arm-movement contingencies. I also contributed to the design of a robotized pacifier and a baby-gym, both created to 
-      study how babies discover and interact with sensorimotor regularities.
-      </p>
-      <a href="https://drive.google.com/file/d/0B9WJ-nNrcH7hTzE0M2M0ZUlfeVU/view?resourcekey=0-QksA4ng5cCQf9O_7IJFe7g" target="_blank">Robotic Pacifier</a>
-    </div>
-  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.thumb-row img').forEach(img=>{
+        const src = img.dataset.src || img.getAttribute('src');
+        if(src){ img.src = src; }
+      });
 
-</section>
+      const thumbs = Array.from(document.querySelectorAll('.thumb-row img'));
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+      const lbPrev = document.getElementById('lbPrev');
+      const lbNext = document.getElementById('lbNext');
+      let currentIndex = -1;
 
-<section class="gallery-section">
-  <h2>Gallery</h2>
-  <p>Click on any image to view it in full size.</p>
-  <div class="thumb-grid">
-    <img src="research_project.png" alt="Research Project" data-full="research_project.png" />
-    <img src="bot_crib.png" alt="Bot Crib" data-full="bot_crib.png" />
-  </div>
-</section>
+      function openAt(i){
+        const t = thumbs[i];
+        if(!t) return;
+        const full = t.dataset.full || t.src;
+        lbImg.src = full;
+        lbCaption.textContent = t.alt || '';
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden','false');
+        currentIndex = i;
+        lbImg.style.transform = 'scale(0.98)';
+        setTimeout(()=>{lbImg.style.transform='scale(1)';},10);
+      }
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close-area" id="lightbox-close"></span>
-  <img id="lightbox-img" src="" />
-</div>
+      function closeLB(){
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        currentIndex = -1;
+      }
 
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeArea = document.getElementById('lightbox-close');
-
-  // Open lightbox when clicking on gallery thumbnails
-  const thumbs = document.querySelectorAll('.thumb-grid img');
-  thumbs.forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.dataset.full || img.src;
-      lightbox.style.display = 'flex';
+      thumbs.forEach((t,i)=>{ t.addEventListener('click', ()=> openAt(i)); });
+      lbClose.addEventListener('click', closeLB);
+      lbPrev.addEventListener('click', ()=> openAt((currentIndex - 1 + thumbs.length) % thumbs.length));
+      lbNext.addEventListener('click', ()=> openAt((currentIndex + 1) % thumbs.length));
+      document.getElementById('lightbox').addEventListener('click', (e)=>{ if(e.target.id === 'lightbox') closeLB(); });
+      document.addEventListener('keydown', (e)=>{
+        if(currentIndex === -1) return;
+        if(e.key === 'Escape') closeLB();
+        if(e.key === 'ArrowLeft') lbPrev.click();
+        if(e.key === 'ArrowRight') lbNext.click();
+      });
     });
-  });
+  </script>
 
-  // Open lightbox when clicking on publication images
-  const pubImages = document.querySelectorAll('.pub-item img');
-  pubImages.forEach(img => {
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.style.display = 'flex';
-    });
-  });
-
-  // Close lightbox when clicking on the close area (background)
-  closeArea.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    lightboxImg.src = '';
-  });
-
-  // Close lightbox when pressing Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    }
-  });
-
-  // Prevent closing when clicking on the image itself
-  lightboxImg.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-</script>
 </body>
 </html>
-
-
-
-
